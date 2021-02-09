@@ -1,0 +1,23 @@
+In the case you can't compile source codes.
+First make sure to switch Debug/Release and x86/x64 and check again
+SERIAL:
+	Set C++ Version to C++17
+		Project Properties > C/C++ > Language > C++ Language Standard
+		> ISO C++17
+PARALLEL 1 and 3:
+	Set c++ Version to C++17
+	Active Openmp in compiler settings
+		Project Properties > C/C++ > Language > Open MP Support > Yes
+	Active Two Phase thingy
+		Project Properties > C/C++ > Command Line >
+		Additional Options >/Zc:twoPhase- 
+CUDA:
+	Use Visual Studio CUDA Template
+	Activate Open MP
+		Project Properties > CUDA C/C++ > Command Line >
+		Additional Options > -Xcompiler -fopenmp 
+	Activate Open MP for NVCC Compiler
+		Go to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin
+		Open nvcc.profile (need to have admin privilage)
+		Change INCLUDE line to this:
+			INCLUDES        +=  "-I$(TOP)/include" "/openmp" $(_SPACE_)
